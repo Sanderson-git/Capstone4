@@ -1,0 +1,54 @@
+<html>
+<head>
+	<script>
+		var cartArray = [];
+		var priceArray = [];
+		
+		function addToCart (cartItem, cartPrice){
+			cartArray.push(cartItem);
+			priceArray.push(cartPrice);
+		}
+		
+		function createTotal() {
+			var priceTotal = 0;
+			for (let i = 0; i < cartArray.length; i++) {
+				priceTotal += priceArray[i];
+			}
+			return priceTotal;
+		}
+		
+		function cartCheckout (){
+			var checkoutString = "";
+			for (let i = 0; i < cartArray.length; i++) {
+				checkoutString += (cartArray[i] + " - $" + priceArray[i] +"\n");
+			}
+			var grandTotal = (createTotal() * 1.06);
+			alert(checkoutString + "\nSubTotal: $" + createTotal() + "\nTotal: $" + grandTotal);
+			var checkoutChal = checkoutString + "\nTotal Balance: $" + createTotal();
+			document.getElementByID('outputdiv').innerHTML = (checkoutString + "\nTotal Balance: $" + createTotal());
+		}
+		
+	</script>
+</head>
+
+<body>
+	<h1><b>Shopping List Demo</b></h1>
+	<p>Please select items below to add to your shopping cart.</p>
+	<h2>Items in stock:</h2>
+	<br /> <img src="https://www.kroger.com/product/images/xlarge/front/0001111040138" width= "250" height= "250">
+	<br /> <button onclick="addToCart('Milk', 2.50)">Add to cart</button>
+	
+	<br /> <img src="https://butterwithasideofbread.com/wp-content/uploads/2019/07/White-Bread_10.bsb_.jpg" width= "250" height= "250">
+	<br /> <button onclick="addToCart('Bread', 1.99)">Add to cart</button>
+	
+	<br /> <img src="https://images-na.ssl-images-amazon.com/images/I/61H03WfHuTL._SL1452_.jpg" width= "250" height= "250">
+	<br /> <button onclick="addToCart('Pasta', 2.99)">Add to cart</button>
+	
+	<br /> <img src="https://www.meijer.com/content/dam/meijer/product/0001/60/0012/02/0001600012025_3_A1C1_1200.png" width= "250" height= "250">
+	<br /> <button onclick="addToCart('Ceareal', 3.50)">Add to cart</button>
+	
+	<br /> <br /> <button onclick="cartCheckout()">Checkout</button>
+	<br /> <br /> <div id="outputdiv"></div>
+	
+</body>
+</html>
